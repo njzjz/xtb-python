@@ -86,6 +86,7 @@ class XTB(ase_calc.Calculator):
         "electronic_temperature": 300.0,
         "solvent": "None",
         "cache_api": True,
+        "charge": 0,
     }
 
     _res = None
@@ -187,7 +188,7 @@ class XTB(ase_calc.Calculator):
         try:
             _cell = self.atoms.cell
             _periodic = self.atoms.pbc
-            _charge = self.atoms.get_initial_charges().sum()
+            _charge = self.parameters.charge
             _uhf = int(self.atoms.get_initial_magnetic_moments().sum().round())
 
             calc = Calculator(
